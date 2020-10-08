@@ -7,7 +7,7 @@ export const productsTypes = {
 };
 
 export const productsActions = {
-  getProductsRequest: () => ({ type: productsTypes.getProductsError }),
+  getProductsRequest: () => ({ type: productsTypes.getProductsRequest }),
   getProductsSuccess: (groups: Group) => ({ type: productsTypes.getProductsSuccess, payload: groups }),
   getProductsError: () => ({ type: productsTypes.getProductsError }),
 };
