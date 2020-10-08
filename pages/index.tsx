@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { ProductsList } from "screens/productsList";
+import { ProductsList } from "screens/products-list";
 
 export default function Home() {
   return (
