@@ -3,7 +3,7 @@ import { productsTypes } from "services/actions/products";
 import { Group } from "models/Group";
 import { ProductsState } from "models/ProductsState";
 
-export const initProductsState: ProductsState = {
+const initState: ProductsState = {
   isLoading: false,
   isLoaded: false,
   groups: [],
@@ -29,7 +29,7 @@ const requestFailed = (state: ProductsState): ProductsState => {
   return { ...state, isLoading: false };
 };
 
-export const productsReducer = createReducer(initProductsState, {
+export const productsReducer = createReducer(initState, {
   [productsTypes.getProductsRequest]: requestStart,
   [productsTypes.getProductsSuccess]: requestFinished,
   [productsTypes.getProductsError]: requestFailed,
