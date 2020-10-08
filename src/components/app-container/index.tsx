@@ -1,8 +1,11 @@
 import { ReactNode, FC } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import Hidden from "@material-ui/core/Hidden";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -17,11 +20,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export interface AppContainerProps {
+  onButtonClick: () => void;
   children: ReactNode;
 }
 
 export const AppContainer: FC<AppContainerProps> = (props) => {
-  const { children } = props;
+  const { children, onButtonClick } = props;
   const classes = useStyles();
 
   return (
@@ -32,6 +36,12 @@ export const AppContainer: FC<AppContainerProps> = (props) => {
             <Typography variant="h6" className={classes.title}>
               Test task
             </Typography>
+
+            <Hidden mdUp>
+              <IconButton color="primary" onClick={onButtonClick}>
+                <ShoppingCartIcon />
+              </IconButton>
+            </Hidden>
           </Toolbar>
         </AppBar>
       </header>

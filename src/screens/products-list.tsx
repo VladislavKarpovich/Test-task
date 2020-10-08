@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { useProducts } from "services/hooks/use-products";
 import { useAddToBasket } from "services/hooks/use-add-to-basket";
 import { AppContainer } from "components/app-container";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { ProductCard } from "components/product-card";
@@ -25,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ProductsList = () => {
+  const [isBasketOpened, setIsBasketOpened] = useState(false);
+  const closeBasket = () => setIsBasketOpened(false);
+  const openBasket = () => setIsBasketOpened(true);
+
   const { isLoaded, isLoading, groups } = useProducts();
   const { addToBasket } = useAddToBasket();
   const classes = useStyles();
@@ -32,7 +39,7 @@ export const ProductsList = () => {
   const showSpinner = isLoading && !isLoaded;
 
   return (
-    <AppContainer>
+    <AppContainer onButtonClick={openBasket}>
       <Typography variant="h4" className={classes.title}>
         Наши товары:
       </Typography>
@@ -58,9 +65,17 @@ export const ProductsList = () => {
           ))}
         </Grid>
 
-        <Grid item xs={12} md={6} lg={4} className={classes.basketContainer}>
-          <Basket />
-        </Grid>
+        {/* For big screens */}
+        <Hidden smDown>
+          <Grid item xs={12} md={6} lg={4} className={classes.basketContainer}>
+            <Basket onClose={closeBasket} />
+          </Grid>
+        </Hidden>
+
+        {/* For small screens */}
+        <Drawer anchor="top" open={isBasketOpened} onClose={closeBasket}>
+          <Basket onClose={closeBasket} />
+        </Drawer>
       </Grid>
     </AppContainer>
   );
