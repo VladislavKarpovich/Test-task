@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { ProductsList } from "screens/productsList";
 
 export default function Home() {
   return (
@@ -7,6 +8,8 @@ export default function Home() {
         <title>Test task</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <ProductsList />
     </>
   );
 }
