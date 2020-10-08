@@ -96,6 +96,9 @@ const nextConfig = {
   dontAutoRegisterSw: true,
   webpack,
   workboxOpts,
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname,
+  },
 };
 
 module.exports = withOffline(nextConfig);
