@@ -5,6 +5,7 @@ import { useCurrencyRateValue } from "services/hooks/use-currency-rates";
 import Typography from "@material-ui/core/Typography";
 import { Variant } from "@material-ui/core/styles/createTypography";
 import { green, red } from "@material-ui/core/colors";
+import { numberWithCommas } from "utils/common";
 
 const useStyles = makeStyles((theme) => ({
   "@keyframes priceUpAnimation": {
@@ -25,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
   priceUp: {
     animation: "$priceUpAnimation",
-    animationDuration: "1.5s",
+    animationDuration: "2s",
     animationIterationCount: "1",
     animationTimingFunction: "ease",
   },
   priceDown: {
     animation: "$priceDownAnimation",
-    animationDuration: "1.5s",
+    animationDuration: "2s",
     animationIterationCount: "1",
     animationTimingFunction: "ease",
   },
@@ -68,7 +69,7 @@ export const MoneyText: FC<MoneyTextProps> = (props) => {
 
     const timer = setTimeout(() => {
       setPriceDirection("");
-    }, 1500);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
@@ -77,7 +78,7 @@ export const MoneyText: FC<MoneyTextProps> = (props) => {
 
   return (
     <Typography variant={variant} className={priceDirectionClass} component="span">
-      {price ?? "..."} руб
+      {numberWithCommas(price ?? 0)} руб
     </Typography>
   );
 };

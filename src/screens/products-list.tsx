@@ -44,11 +44,15 @@ export const ProductsList = () => {
   return (
     <AppContainer onButtonClick={openBasket}>
       <Grid container justify="space-between">
-        <Typography variant="h4" className={classes.title}>
-          Наши товары:
-        </Typography>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="h4" className={classes.title}>
+            Наши товары:
+          </Typography>
+        </Grid>
 
-        <ExchangeRateForm />
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <ExchangeRateForm />
+        </Grid>
       </Grid>
 
       {showSpinner && <LinearProgress color="primary" />}
