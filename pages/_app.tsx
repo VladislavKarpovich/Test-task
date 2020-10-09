@@ -9,6 +9,7 @@ import { theme } from "theme";
 
 const AppCoreComponent = ({ Component, pageProps }) => {
   useEffect(() => {
+    // Styling solution with CSSinJS with SSR
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -39,6 +40,7 @@ const getInitialProps = async ({ Component, ctx }: AppContext) => {
   if (ctx.req) {
     ctx.store.dispatch(END);
 
+    // Supporting redux-saga SSR  
     const sagaTask = (ctx.store as SagaStore)?.sagaTask;
     if (sagaTask) {
       await sagaTask.toPromise();

@@ -10,10 +10,7 @@ class DocumentTemplate extends Document {
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
 
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </Head>
         <body>
           <Main />
@@ -24,6 +21,7 @@ class DocumentTemplate extends Document {
   }
 }
 
+// Styling solution with CSSinJS with SSR
 DocumentTemplate.getInitialProps = async (ctx) => {
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
@@ -37,10 +35,7 @@ DocumentTemplate.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
-    ],
+    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
   };
 };
 

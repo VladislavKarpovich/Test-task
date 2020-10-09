@@ -5,6 +5,7 @@ export const getData = async () => {
   const getDataTask = axios.get("/api/data");
   const getNamesTask = axios.get("/api/names");
 
+  // Execute two requests concretely
   const [dataResponse, namesResponse] = await Promise.all([getDataTask, getNamesTask]);
 
   const { data } = dataResponse;

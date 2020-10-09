@@ -13,6 +13,8 @@ function* getCurrencyRates() {
 }
 
 export function* loadCurrencyRatesSaga() {
+  // takeEvery - Run new saga without stopping executing saga
+  // Run getCurrencyRates Saga on app init and on refresh currency rate button click
   yield takeEvery(exchangeRatesTypes.exchangeRefresh, getCurrencyRates);
   yield takeEvery(exchangeRatesTypes.exchangeRequest, getCurrencyRates);
 }

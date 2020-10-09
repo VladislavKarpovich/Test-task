@@ -54,6 +54,8 @@ export const MoneyText: FC<MoneyTextProps> = (props) => {
   const prevRate = usePrevious(rate);
   const prevPrice = usePrevious(price);
 
+  // Use react effect for handling currency rates changes.
+  // Change class to show animation
   useEffect(() => {
     if (price === null || prevPrice === null) return;
 
@@ -64,6 +66,7 @@ export const MoneyText: FC<MoneyTextProps> = (props) => {
     }
   }, [price]);
 
+  // Animation duration is 2s, reset class in 2s
   useEffect(() => {
     if (priceDirectionClass === "") return;
 

@@ -4,6 +4,7 @@ import { getData } from "services/api";
 
 function* loadProductsLoopSaga() {
   try {
+    // Execute request in this loop with 15s delay
     while (true) {
       const result = yield call(getData);
       yield put(productsActions.getProductsSuccess(result));
@@ -17,5 +18,7 @@ function* loadProductsLoopSaga() {
 }
 
 export function* loadProductsSaga() {
+  // Start the loop on  getProductsRequest action,
+  // if getProductsRequest called again, stop executing loop and start new. Implemented using takeLatest function
   yield takeLatest(productsTypes.getProductsRequest, loadProductsLoopSaga);
 }
