@@ -20,6 +20,11 @@ export const useCurrencyRates = () => {
   return { ...state, applyCurrencyExchangeRate, refreshCurrencyExchangeRate };
 };
 
+export const useCurrencyRateValue = () => {
+  const state = useSelector(productsSelector);
+  return state;
+};
+
 export const useCurrencyRatesInitialization = () => {
   const dispatch = useDispatch();
 

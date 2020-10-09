@@ -11,6 +11,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForwardIos";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CloseIcon from "@material-ui/icons/Close";
 import { makeStyles } from "@material-ui/core/styles";
+import { MoneyText } from "../money-text";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -76,7 +77,7 @@ export const Basket: FC<BasketProps> = (props) => {
           <Grid container className={classes.productContainer}>
             <Grid item xs={6} sm={7}>
               <Typography variant="body2">{product.name}</Typography>
-              <Typography variant="caption">{product.priceUsd} $</Typography>
+              <MoneyText variant="caption" priceUsd={product.priceUsd} />
               {amount === product.amount && (
                 <Typography variant="caption" color="error" component="p">
                   Вы выбрали максимальное количество
@@ -110,7 +111,7 @@ export const Basket: FC<BasketProps> = (props) => {
 
       <Grid container justify="space-between" className={classes.resultContainer}>
         <Typography>Сумма:</Typography>
-        <Typography>{sum} руб</Typography>
+        <MoneyText priceUsd={sum} />
       </Grid>
     </Paper>
   );

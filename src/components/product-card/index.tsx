@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { Product } from "models/Product";
+import { MoneyText } from "../money-text";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,7 +30,7 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
   return (
     <Paper className={classes.paper} elevation={3} data-product-id={product.id}>
       <Typography variant="subtitle1">{product.name}</Typography>
-      <Typography>{product.priceUsd} $</Typography>
+      <MoneyText priceUsd={product.priceUsd} />
       <Typography variant="body2">В наличии: {product.amount}</Typography>
 
       <Grid container justify="flex-end" onClick={onButtonClick}>
