@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius * 2,
   },
   title: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(2, 1),
   },
   emptyBasketMessage: {
     margin: theme.spacing(3, 1),
@@ -42,7 +42,7 @@ export interface BasketProps {
 export const Basket: FC<BasketProps> = (props) => {
   const { onClose } = props;
   const classes = useStyles();
-  const { products, incrementInBasket, removeAllFromBasket, removeOneFromBasket } = useBasket();
+  const { sum, products, incrementInBasket, removeAllFromBasket, removeOneFromBasket } = useBasket();
 
   return (
     <Paper id="basket" className={classes.paper} elevation={3}>
@@ -67,7 +67,7 @@ export const Basket: FC<BasketProps> = (props) => {
           align="center"
           className={classes.emptyBasketMessage}
         >
-          Вы ещё ничего не выбрали
+          Вы ничего не выбрали
         </Typography>
       )}
 
@@ -110,7 +110,7 @@ export const Basket: FC<BasketProps> = (props) => {
 
       <Grid container justify="space-between" className={classes.resultContainer}>
         <Typography>Сумма:</Typography>
-        <Typography>0 руб</Typography>
+        <Typography>{sum} руб</Typography>
       </Grid>
     </Paper>
   );

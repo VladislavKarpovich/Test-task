@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useProducts } from "services/hooks/use-products";
+import { useCurrencyRatesInitialization } from "services/hooks/use-currency-rates";
 import { useAddToBasket } from "services/hooks/use-add-to-basket";
 import { AppContainer } from "components/app-container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { ProductCard } from "components/product-card";
 import { Basket } from "components/basket";
+import { ExchangeRateForm } from "components/exchange-rate-form";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -35,14 +37,19 @@ export const ProductsList = () => {
   const { isLoaded, isLoading, groups } = useProducts();
   const { addToBasket } = useAddToBasket();
   const classes = useStyles();
+  useCurrencyRatesInitialization();
 
   const showSpinner = isLoading && !isLoaded;
 
   return (
     <AppContainer onButtonClick={openBasket}>
-      <Typography variant="h4" className={classes.title}>
-        Наши товары:
-      </Typography>
+      <Grid container justify="space-between">
+        <Typography variant="h4" className={classes.title}>
+          Наши товары:
+        </Typography>
+
+        <ExchangeRateForm />
+      </Grid>
 
       {showSpinner && <LinearProgress color="primary" />}
 

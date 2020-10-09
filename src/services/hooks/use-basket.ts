@@ -21,6 +21,7 @@ export const useBasket = () => {
   };
 
   const products = Object.values(state.products);
+  const sum = products.map((pr) => pr.amount * pr.product.priceUsd).reduce((sum, product) => sum + product, 0);
 
-  return { products, incrementInBasket, removeAllFromBasket, removeOneFromBasket };
+  return { products, sum, incrementInBasket, removeAllFromBasket, removeOneFromBasket };
 };
